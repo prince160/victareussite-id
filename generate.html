@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Identifiant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f0f0, #d6e6f2);
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #4a90e2;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        #identifier {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #2d3436;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur d'Identifiant</h1>
+        <div id="identifier">Cliquez pour générer</div>
+        <button onclick="generateIdentifier()">Générer</button>
+    </div>
+    
+    <script>
+        let generatedIdentifiers = new Set();
+        
+        function generateIdentifier() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let identifier;
+            do {
+                identifier = '';
+                for (let i = 0; i < 6; i++) {
+                    identifier += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+            } while (generatedIdentifiers.has(identifier));
+            
+            generatedIdentifiers.add(identifier);
+            document.getElementById('identifier').textContent = identifier;
+        }
+    </script>
+</body>
+</html>
